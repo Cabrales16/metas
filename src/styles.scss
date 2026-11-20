@@ -54,7 +54,7 @@ html[data-tema='oscuro'] {
 
   --ok: #17784a; // ingresos
   --ok-bg: #dff1e7;
-  --warn: #9a6a00;
+  --warn: #855a00;
   --warn-bg: #fdecc8;
   --err: #b3312d; // excedido, errores
   --err-bg: #f8dcda;
@@ -479,7 +479,7 @@ p {
   border-radius: var(--r-m);
 
   button {
-    height: 36px;
+    height: 40px;
     padding: 0 14px;
     border: 0;
     border-radius: var(--r-s);

@@ -85,13 +85,13 @@ const CLASE_ESTADO: Record<EstadoBolsa, string> = { ok: '', cerca: 'warn', exced
           <section class="card bolsa">
             <div class="card-head">
               <h2>{{ etiqueta(b.bucket) }} <span class="muted">{{ b.percent }} %</span></h2>
-              <span class="chip" [class.ok]="b.estado === 'ok'" [class.warn]="b.estado === 'cerca'" [class.err]="b.estado === 'excedido'">
-                {{ textoEstado[b.estado] }}
+              <span class="chip" [class.ok]="p().base > 0 && b.estado === 'ok'" [class.warn]="p().base > 0 && b.estado === 'cerca'" [class.err]="p().base > 0 && b.estado === 'excedido'">
+                {{ p().base > 0 ? textoEstado[b.estado] : 'Sin ingresos' }}
               </span>
             </div>
             <div class="card-body">
-              <div class="progress" [class]="'progress ' + claseEstado[b.estado]" role="progressbar" [attr.aria-valuenow]="tope(b.ratio)" aria-valuemin="0" aria-valuemax="100" [attr.aria-label]="etiqueta(b.bucket)">
-                <span [style.width.%]="tope(b.ratio)"></span>
+              <div class="progress" [class]="'progress ' + (p().base > 0 ? claseEstado[b.estado] : '')" role="progressbar" [attr.aria-valuenow]="tope(b.ratio)" aria-valuemin="0" aria-valuemax="100" [attr.aria-label]="etiqueta(b.bucket)">
+                <span [style.width.%]="p().base > 0 ? tope(b.ratio) : 0"></span>
               </div>
               <div class="fila">
                 <span class="muted">Gastado</span>

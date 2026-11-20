@@ -73,7 +73,7 @@ import { MonthNav } from '../../shared/month-nav';
         </div>
       </section>
 
-      <div class="grid-2 bloque">
+      <div class="grid-2 bloque pareja">
         <section class="card">
           <div class="card-head"><h2>Gastos por categoría</h2></div>
           <div class="card-body">
@@ -89,7 +89,7 @@ import { MonthNav } from '../../shared/month-nav';
           </div>
         </section>
 
-        <section class="card">
+        <section class="card saldo-card">
           <div class="card-head">
             <h2>Saldo por cuenta</h2>
             <a class="enlace" routerLink="/mas/cuentas">Cuentas</a>
@@ -104,6 +104,10 @@ import { MonthNav } from '../../shared/month-nav';
                   </li>
                 }
               </ul>
+              <div class="total">
+                <span class="muted">Total disponible</span>
+                <strong class="num" [class.neg]="disponible() < 0">{{ disponible() | cop }}</strong>
+              </div>
             } @else {
               <p class="muted">Aún no tienes cuentas activas.</p>
             }
@@ -222,10 +226,35 @@ import { MonthNav } from '../../shared/month-nav';
       margin-top: 16px;
     }
     .enlace {
+      padding: 10px 6px;
+      margin: -10px -6px;
       color: var(--prim-text);
       font-size: 0.875rem;
       font-weight: 600;
       text-decoration: none;
+    }
+    .pareja {
+      align-items: stretch;
+    }
+    .saldo-card {
+      display: flex;
+      flex-direction: column;
+    }
+    .saldo-card .card-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .total {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+    .total strong {
+      font-size: 1.125rem;
     }
     .saldos {
       list-style: none;

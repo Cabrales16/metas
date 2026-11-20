@@ -169,7 +169,7 @@ interface Dia {
       gap: 8px;
       min-width: 0;
       height: 44px;
-      padding: 0 16px;
+      padding: 0 0 0 16px;
       background: var(--surface);
       border: 1px solid var(--line);
       border-radius: 999px;
@@ -186,6 +186,10 @@ interface Dia {
     }
     .pill mat-select {
       flex: 1;
+      align-self: stretch;
+      display: flex;
+      align-items: center;
+      padding-right: 16px;
       min-width: 0;
       font-size: 0.9375rem;
       font-weight: 600;
