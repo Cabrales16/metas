@@ -1,12 +1,23 @@
-import { Component, effect, inject } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 import { AuthService } from '../core/auth.service';
+import { NetService } from '../core/net.service';
+import { ThemeService } from '../core/theme.service';
+import { UpdateService } from '../core/update.service';
+
+interface Seccion {
+  ruta: string;
+  etiqueta: string;
+  icono: string;
+}
 
 @Component({
   selector: 'app-shell',
-  imports: [RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, MatButtonModule],
   templateUrl: './shell.html',
   styleUrl: './shell.scss',
 })
@@ -14,12 +25,28 @@ export class Shell {
   private readonly auth = inject(AuthService);
   private readonly router = inject(Router);
   private readonly snackBar = inject(MatSnackBar);
+  private readonly dialog = inject(MatDialog);
+  protected readonly net = inject(NetService);
+  protected readonly update = inject(UpdateService);
+  protected readonly tema = inject(ThemeService);
 
-  protected readonly secciones = [
+  protected readonly contraido = signal(false);
+
+  protected readonly principal: Seccion[] = [
     { ruta: '/inicio', etiqueta: 'Inicio', icono: 'home' },
     { ruta: '/movimientos', etiqueta: 'Movimientos', icono: 'receipt_long' },
     { ruta: '/presupuesto', etiqueta: 'Presupuesto', icono: 'pie_chart' },
     { ruta: '/metas', etiqueta: 'Metas', icono: 'flag' },
+  ];
+  protected readonly mas: Seccion[] = [
+    { ruta: '/mas/cdts', etiqueta: 'CDTs', icono: 'account_balance' },
+    { ruta: '/mas/prestamos', etiqueta: 'Por cobrar', icono: 'handshake' },
+    { ruta: '/mas/cuentas', etiqueta: 'Cuentas', icono: 'account_balance_wallet' },
+    { ruta: '/mas/categorias', etiqueta: 'Categorías', icono: 'category' },
+    { ruta: '/mas/importar', etiqueta: 'Importar Monefy', icono: 'upload_file' },
+  ];
+  protected readonly inferior: Seccion[] = [
+    ...this.principal,
     { ruta: '/mas', etiqueta: 'Más', icono: 'more_horiz' },
   ];
 
@@ -30,6 +57,12 @@ export class Shell {
         this.router.navigateByUrl('/login');
       }
     });
+  }
+
+  /** El formulario se carga bajo demanda: así el arranque no arrastra todo Material. */
+  protected async nuevoMovimiento(): Promise<void> {
+    const { TxDialog } = await import('../pages/movimientos/tx-dialog');
+    this.dialog.open(TxDialog, { data: {}, width: '520px', maxWidth: 'calc(100vw - 24px)' });
   }
 
   protected async cerrarSesion(): Promise<void> {

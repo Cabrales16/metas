@@ -34,7 +34,7 @@ import { ICONOS_CATEGORIA } from '../core/catalog';
       display: grid;
       place-items: center;
       color: var(--app-muted);
-      background: var(--mat-sys-surface-container-high);
+      background: var(--line-2);
       border: 1px solid transparent;
       border-radius: 12px;
       cursor: pointer;
@@ -43,15 +43,15 @@ import { ICONOS_CATEGORIA } from '../core/catalog';
         color 140ms ease;
     }
     .icon:hover {
-      color: #fff;
+      color: var(--ink);
     }
     .icon[aria-checked='true'] {
-      color: #fff;
+      color: var(--ink);
       background: color-mix(in srgb, var(--app-accent) 28%, transparent);
       border-color: var(--app-accent);
     }
     .icon:focus-visible {
-      outline: 2px solid #fff;
+      outline: 2px solid var(--ink);
       outline-offset: 1px;
     }
   `,

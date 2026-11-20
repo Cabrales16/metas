@@ -1,32 +1,85 @@
-<div class="shell">
-  <header class="top-bar">
-    <span class="brand">Metas</span>
-    <button type="button" class="icon-btn" aria-label="Cerrar sesión" (click)="cerrarSesion()">
-      <span class="material-symbols-outlined" aria-hidden="true">logout</span>
+<div class="app" [class.contraido]="contraido()">
+  <aside class="side" aria-label="Menú principal">
+    <button
+      type="button"
+      class="brand"
+      (click)="contraido.set(!contraido())"
+      [attr.aria-expanded]="!contraido()"
+      [attr.aria-label]="contraido() ? 'Expandir menú' : 'Contraer menú'"
+    >
+      <span class="mark" aria-hidden="true">M</span>
+      <span class="txt">Metas</span>
     </button>
-  </header>
 
-  <nav class="side-nav" aria-label="Navegación principal">
-    <div class="brand">Metas</div>
-    @for (s of secciones; track s.ruta) {
-      <a class="nav-item" [routerLink]="s.ruta" routerLinkActive="active">
-        <span class="material-symbols-outlined" aria-hidden="true">{{ s.icono }}</span>
-        <span>{{ s.etiqueta }}</span>
-      </a>
+    <nav class="menu" aria-label="Secciones">
+      @for (s of principal; track s.ruta) {
+        <a class="item" [routerLink]="s.ruta" routerLinkActive="activo" [title]="s.etiqueta">
+          <span class="material-symbols-outlined" aria-hidden="true">{{ s.icono }}</span>
+          <span class="txt">{{ s.etiqueta }}</span>
+        </a>
+      }
+      <p class="group txt">Más</p>
+      @for (s of mas; track s.ruta) {
+        <a class="item" [routerLink]="s.ruta" routerLinkActive="activo" [title]="s.etiqueta">
+          <span class="material-symbols-outlined" aria-hidden="true">{{ s.icono }}</span>
+          <span class="txt">{{ s.etiqueta }}</span>
+        </a>
+      }
+    </nav>
+
+    <div class="side-foot">
+      <button type="button" class="item" (click)="cerrarSesion()" title="Cerrar sesión">
+        <span class="material-symbols-outlined" aria-hidden="true">logout</span>
+        <span class="txt">Cerrar sesión</span>
+      </button>
+    </div>
+  </aside>
+
+  <div class="main">
+    @if (!net.online()) {
+      <div class="notice err" role="status">
+        <span class="material-symbols-outlined" aria-hidden="true">cloud_off</span>
+        Sin conexión. Puedes consultar lo ya cargado, pero no guardar cambios.
+      </div>
     }
-    <button type="button" class="nav-item logout" (click)="cerrarSesion()">
-      <span class="material-symbols-outlined" aria-hidden="true">logout</span>
-      <span>Cerrar sesión</span>
-    </button>
-  </nav>
+    @if (update.hayNueva()) {
+      <div class="notice" role="status">
+        <span class="material-symbols-outlined" aria-hidden="true">system_update</span>
+        Hay una nueva versión.
+        <button type="button" (click)="update.actualizar()">Actualizar</button>
+      </div>
+    }
 
-  <main class="content">
-    <router-outlet />
-  </main>
+    <header class="top">
+      <span class="top-brand"><span class="mark" aria-hidden="true">M</span>Metas</span>
+      <span class="spacer"></span>
+      <button mat-flat-button type="button" class="nuevo" (click)="nuevoMovimiento()">
+        <span class="material-symbols-outlined" aria-hidden="true">add</span>
+        <span class="largo">Nuevo movimiento</span><span class="corto">Nuevo</span>
+      </button>
+      <button
+        type="button"
+        class="icon-btn"
+        (click)="tema.alternar()"
+        [attr.aria-label]="tema.tema() === 'claro' ? 'Cambiar a tema oscuro' : 'Cambiar a tema claro'"
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">{{
+          tema.tema() === 'claro' ? 'dark_mode' : 'light_mode'
+        }}</span>
+      </button>
+      <button type="button" class="icon-btn solo-movil" (click)="cerrarSesion()" aria-label="Cerrar sesión">
+        <span class="material-symbols-outlined" aria-hidden="true">logout</span>
+      </button>
+    </header>
+
+    <main class="content">
+      <router-outlet />
+    </main>
+  </div>
 
   <nav class="bottom-nav" aria-label="Navegación principal">
-    @for (s of secciones; track s.ruta) {
-      <a class="nav-item" [routerLink]="s.ruta" routerLinkActive="active">
+    @for (s of inferior; track s.ruta) {
+      <a class="item" [routerLink]="s.ruta" routerLinkActive="activo">
         <span class="material-symbols-outlined" aria-hidden="true">{{ s.icono }}</span>
         <span>{{ s.etiqueta }}</span>
       </a>

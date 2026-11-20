@@ -42,3 +42,11 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+# Datos personales de prueba (el repo es público): nunca versionar
+/docs/
+*.csv
+
+# Archivos temporales de las pruebas en navegador
+.playwright-mcp/
+t-*.png

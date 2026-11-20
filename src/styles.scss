@@ -1,34 +1,126 @@
 @use '@angular/material' as mat;
 
-// Tema Material 3 oscuro: azul marino con acento azul vivo.
+// Tema Material 3 base (claro por defecto, oscuro con data-tema="oscuro").
+// Colores de marca: amarillo (acento) sobre carbón; los tokens propios van abajo.
 html {
+  color-scheme: light;
+  @include mat.theme(
+    (
+      color: (
+        theme-type: light,
+        primary: mat.$yellow-palette,
+      ),
+      typography: 'DM Sans',
+      density: 0,
+    )
+  );
+}
+
+html[data-tema='oscuro'] {
   color-scheme: dark;
   @include mat.theme(
     (
       color: (
         theme-type: dark,
-        primary: mat.$azure-palette,
+        primary: mat.$yellow-palette,
       ),
-      typography: Inter,
+      typography: 'DM Sans',
       density: 0,
     )
   );
+}
 
-  // Superficies azul marino sobre el tema base.
-  --mat-sys-background: #0b1426;
-  --mat-sys-surface: #0b1426;
-  --mat-sys-surface-container-lowest: #080f1e;
-  --mat-sys-surface-container-low: #0e1a30;
-  --mat-sys-surface-container: #12203a;
-  --mat-sys-surface-container-high: #172846;
-  --mat-sys-surface-container-highest: #1c2f52;
-  --mat-sys-primary: #3b82f6;
+// ---- Tokens de la app (claro) ----
+:root {
+  --bg: #f6f4ee;
+  --surface: #ffffff;
+  --surface-2: #fbfaf6;
+  --ink: #1f1d19;
+  --muted: #6b665c;
+  --faint: #8f897d;
+  --line: #e4e0d4;
+  --line-2: #efece3;
+
+  --prim: #fdda24; // amarillo de marca (relleno de botones y marcas)
+  --prim-h: #f2cd0f;
+  --on-prim: #1f1b0c; // texto sobre el amarillo
+  --prim-text: #7a5f00; // amarillo oscuro para texto y bordes sobre fondo claro
+  --prim-bg: #fff3b8;
+
+  --side: #1e1c19; // barra lateral siempre oscura
+  --side-ink: #eeeae0;
+  --side-muted: #a39d90;
+  --side-act: #2d2a25;
+
+  --ok: #17784a; // ingresos
+  --ok-bg: #dff1e7;
+  --warn: #9a6a00;
+  --warn-bg: #fdecc8;
+  --err: #b3312d; // excedido, errores
+  --err-bg: #f8dcda;
+
+  --r-s: 6px;
+  --r-m: 10px;
+  --r-l: 16px;
+  --shadow: 0 1px 2px rgba(31, 29, 25, 0.06), 0 4px 14px rgba(31, 29, 25, 0.06);
+  --shadow-lg: 0 12px 40px rgba(20, 18, 14, 0.25);
+
+  // Alias usados por los componentes ya escritos
+  --app-accent: var(--prim);
+  --app-border: var(--line);
+  --app-muted: var(--muted);
+
+  // Material: que formularios, diálogos y toggles sigan la paleta
+  --mat-sys-background: var(--bg);
+  --mat-sys-surface: var(--surface);
+  --mat-sys-surface-container-lowest: var(--surface);
+  --mat-sys-surface-container-low: var(--surface-2);
+  --mat-sys-surface-container: var(--surface);
+  --mat-sys-surface-container-high: var(--surface);
+  --mat-sys-surface-container-highest: var(--line-2);
+  --mat-sys-on-surface: var(--ink);
+  --mat-sys-on-surface-variant: var(--muted);
+  --mat-sys-outline: var(--faint);
+  --mat-sys-outline-variant: var(--line);
+  --mat-sys-primary: var(--prim-text);
   --mat-sys-on-primary: #ffffff;
+  --mat-sys-secondary-container: var(--prim-bg);
+  --mat-sys-on-secondary-container: var(--ink);
+  --mat-sys-error: var(--err);
+  --mat-button-filled-container-color: var(--prim);
+  --mat-button-filled-label-text-color: var(--on-prim);
+  --mat-button-filled-hover-state-layer-color: #000;
+  --mat-button-filled-pressed-state-layer-color: #000;
+}
 
-  // Variables propias de la app.
-  --app-accent: #3b82f6;
-  --app-border: rgba(148, 163, 184, 0.16);
-  --app-muted: #94a3b8;
+// ---- Tokens (oscuro) ----
+html[data-tema='oscuro'] {
+  --bg: #151412;
+  --surface: #1f1d1a;
+  --surface-2: #252320;
+  --ink: #f3f0e8;
+  --muted: #b5afa2;
+  --faint: #8c867a;
+  --line: #36332d;
+  --line-2: #2b2924;
+
+  --prim-text: #fdda24;
+  --prim-bg: #3b3410;
+
+  --side: #0f0e0d;
+  --side-act: #211f1b;
+
+  --ok: #5fcf97;
+  --ok-bg: #1e3a2c;
+  --warn: #f0c35a;
+  --warn-bg: #3d3214;
+  --err: #f08a85;
+  --err-bg: #4a2523;
+
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 14px rgba(0, 0, 0, 0.25);
+
+  --mat-sys-on-primary: #1f1b0c;
+  --mat-button-filled-hover-state-layer-color: #000;
 }
 
 *,
@@ -39,15 +131,28 @@ html {
 
 html,
 body {
-  height: 100%;
+  min-height: 100%;
 }
 
 body {
   margin: 0;
-  background: var(--mat-sys-background);
-  color: var(--mat-sys-on-surface);
-  font-family: Inter, system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'DM Sans', system-ui, 'Segoe UI', Arial, sans-serif;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--prim-text);
+  outline-offset: 2px;
 }
 
 .material-symbols-outlined {
@@ -62,22 +167,49 @@ body {
   user-select: none;
 }
 
-// Estilos compartidos por las pantallas de lista (cuentas, categorías, ...).
+// ---- Utilidades ----
+.muted {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+.pos {
+  color: var(--ok);
+}
+
+.neg {
+  color: var(--err);
+}
+
+// ---- Encabezados de página ----
 .page-title,
 .page-header h1 {
-  margin: 0;
-  font-size: 1.75rem;
-  font-weight: 600;
+  font-size: 1.625rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
 }
 
 .page-header {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin-bottom: 20px;
 
   h1 {
-    flex: 1;
+    flex: 1 0 auto;
+  }
+
+  .sub {
+    flex-basis: 100%;
+    margin-top: -4px;
+    color: var(--muted);
+    font-size: 0.9375rem;
   }
 
   .back {
@@ -86,30 +218,278 @@ body {
     margin-left: -8px;
     display: grid;
     place-items: center;
-    color: var(--app-muted);
+    color: var(--muted);
+    text-decoration: none;
     border-radius: 50%;
 
     &:hover {
-      color: #fff;
+      color: var(--ink);
+      background: var(--line-2);
     }
   }
 }
 
-.muted {
-  color: var(--app-muted);
-  font-size: 0.875rem;
+// Íconos dentro de botones de Angular Material
+.mat-mdc-unelevated-button,
+.mat-mdc-outlined-button,
+.mat-mdc-button {
+  align-items: center;
+
+  .material-symbols-outlined {
+    width: 18px;
+    height: 18px;
+    margin-inline: -4px 8px;
+    font-size: 18px;
+  }
 }
 
+// ---- Tarjetas y bloques ----
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-l);
+  box-shadow: var(--shadow);
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 20px 0;
+
+  h2 {
+    font-size: 1rem;
+    font-weight: 700;
+  }
+}
+
+.card-body {
+  padding: 16px 20px 20px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .grid-2 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+// ---- Indicadores ----
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.kpi {
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  .label {
+    color: var(--muted);
+    font-size: 0.8125rem;
+    font-weight: 500;
+  }
+
+  .value {
+    font-size: 1.625rem;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .note {
+    color: var(--muted);
+    font-size: 0.8125rem;
+  }
+}
+
+// En celular cada indicador es una fila compacta: nombre a la izquierda, cifra a la derecha.
+@media (max-width: 720px) {
+  .kpis {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .kpi {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: 14px 18px;
+
+    .value {
+      font-size: 1.375rem;
+    }
+
+    .note {
+      grid-column: 1 / -1;
+    }
+  }
+}
+
+// ---- Etiquetas de estado ----
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex: none;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  background: var(--line-2);
+  color: var(--muted);
+
+  &.ok {
+    background: var(--ok-bg);
+    color: var(--ok);
+  }
+
+  &.warn {
+    background: var(--warn-bg);
+    color: var(--warn);
+  }
+
+  &.err {
+    background: var(--err-bg);
+    color: var(--err);
+  }
+
+  &.prim {
+    background: var(--prim-bg);
+    color: var(--ink);
+  }
+}
+
+// ---- Barras de progreso ----
+.progress {
+  height: 10px;
+  border-radius: 999px;
+  background: var(--line-2);
+  overflow: hidden;
+
+  > span {
+    display: block;
+    height: 100%;
+    min-width: 0;
+    border-radius: 999px;
+    background: var(--ok);
+    transition: width 300ms ease;
+  }
+
+  &.warn > span {
+    background: var(--warn);
+  }
+
+  &.err > span {
+    background: var(--err);
+  }
+
+  &.prim > span {
+    background: var(--prim);
+  }
+}
+
+// ---- Estados vacíos y de carga ----
 .state {
   margin: 32px 0;
   text-align: center;
 }
 
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--muted);
+
+  .material-symbols-outlined {
+    font-size: 40px;
+    color: var(--faint);
+  }
+
+  strong {
+    color: var(--ink);
+    font-size: 1rem;
+  }
+
+  p {
+    max-width: 340px;
+    font-size: 0.9375rem;
+  }
+}
+
+.skel {
+  border-radius: var(--r-s);
+  min-height: 14px;
+  background: linear-gradient(90deg, var(--line-2) 25%, var(--surface-2) 37%, var(--line-2) 63%);
+  background-size: 400% 100%;
+  animation: skel 1.3s ease infinite;
+}
+
+@keyframes skel {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+// ---- Control segmentado ----
+.seg {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  background: var(--line-2);
+  border-radius: var(--r-m);
+
+  button {
+    height: 36px;
+    padding: 0 14px;
+    border: 0;
+    border-radius: var(--r-s);
+    background: none;
+    color: var(--muted);
+    font: inherit;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+
+    &[aria-pressed='true'] {
+      background: var(--surface);
+      color: var(--ink);
+      box-shadow: var(--shadow);
+    }
+  }
+}
+
+// ---- Listas (cuentas, categorías, movimientos, ...) ----
 .group-title {
   margin: 24px 0 8px;
-  color: var(--app-muted);
+  color: var(--muted);
   font-size: 0.8125rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
@@ -128,9 +508,9 @@ body {
   align-items: center;
   gap: 12px;
   padding: 10px 8px 10px 14px;
-  background: var(--mat-sys-surface-container);
-  border: 1px solid var(--app-border);
-  border-radius: 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-l);
 
   &.archivada {
     opacity: 0.6;
@@ -142,8 +522,8 @@ body {
     height: 40px;
     display: grid;
     place-items: center;
-    color: var(--c);
-    background: color-mix(in srgb, var(--c) 18%, transparent);
+    color: var(--c, var(--muted));
+    background: color-mix(in srgb, var(--c, #64748b) 16%, transparent);
     border-radius: 12px;
   }
 
@@ -158,8 +538,15 @@ body {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      font-weight: 500;
+      font-weight: 600;
     }
+  }
+
+  .amount {
+    flex: none;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    text-align: right;
   }
 
   .icon-btn {
@@ -168,7 +555,7 @@ body {
     height: 44px;
     display: grid;
     place-items: center;
-    color: var(--app-muted);
+    color: var(--muted);
     font: inherit;
     background: transparent;
     border: 0;
@@ -176,10 +563,46 @@ body {
     cursor: pointer;
 
     &:hover {
-      color: #fff;
-      background: var(--mat-sys-surface-container-high);
+      color: var(--ink);
+      background: var(--line-2);
     }
   }
+}
+
+// ---- Formularios en diálogos ----
+.dialog-form {
+  mat-form-field {
+    width: 100%;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .label {
+    margin: 4px 0 10px;
+    color: var(--muted);
+    font-size: 0.875rem;
+  }
+
+  .offline {
+    margin-top: 8px;
+    color: var(--err);
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dialog-form .row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+.cdk-overlay-pane.mat-mdc-dialog-panel {
+  max-width: calc(100vw - 24px) !important;
 }
 
 @media (prefers-reduced-motion: reduce) {

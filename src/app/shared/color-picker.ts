@@ -34,12 +34,12 @@ import { COLORES } from '../core/catalog';
       transition: transform 140ms ease;
     }
     .swatch[aria-checked='true'] {
-      border-color: #fff;
+      border-color: var(--ink);
       outline: 2px solid var(--app-accent);
       outline-offset: 2px;
     }
     .swatch:focus-visible {
-      outline: 2px solid #fff;
+      outline: 2px solid var(--ink);
       outline-offset: 2px;
     }
   `,
