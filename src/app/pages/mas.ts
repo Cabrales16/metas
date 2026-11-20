@@ -28,7 +28,7 @@ import { RouterLink } from '@angular/router';
       </p>
       <p class="creditos">
         Imágenes (dominio público, CC0): «Panorámica de Usaquén, Bogotá D.C.» de Alejandro Turola, y «Nevado del
-        Quindío» del Servicio Geológico Colombiano, vía Wikimedia Commons; fotografía de moto de aventura de Sakin
+        Quindío» del Servicio Geológico Colombiano, y «Embalse de Guatapé» de Dan Gold (Unsplash), vía Wikimedia Commons; fotografía de moto de aventura de Sakin
         Shrestha, vía WordPress Photo Directory.
       </p>
     </section>
@@ -83,6 +83,7 @@ import { RouterLink } from '@angular/router';
 })
 export class Mas {
   protected readonly enlaces = [
+    { ruta: '/propuesta', icono: 'auto_awesome', titulo: 'Probar nuevo diseño', detalle: 'Vista previa «Selva»: gráficos, animaciones y fondos' },
     { ruta: '/mas/cdts', icono: 'account_balance', titulo: 'CDTs', detalle: 'Inversiones con su interés neto y vencimientos' },
     { ruta: '/mas/prestamos', icono: 'handshake', titulo: 'Por cobrar', detalle: 'Préstamos que hiciste y sus pagos' },
     { ruta: '/mas/cuentas', icono: 'account_balance_wallet', titulo: 'Cuentas', detalle: 'Efectivo, banco y otras cuentas' },

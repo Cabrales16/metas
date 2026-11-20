@@ -27,5 +27,10 @@ export const routes: Routes = [
       { path: 'mas/importar', loadComponent: () => import('./pages/importar/importar').then((m) => m.Importar) },
     ],
   },
+  {
+    path: 'propuesta',
+    canActivate: [authGuard],
+    loadComponent: () => import('./propuesta/propuesta').then((m) => m.Propuesta),
+  },
   { path: '**', redirectTo: '' },
 ];

@@ -6,6 +6,7 @@ import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/rou
 
 import { AuthService } from '../core/auth.service';
 import { NetService } from '../core/net.service';
+import { RefreshService } from '../core/refresh.service';
 import { ThemeService } from '../core/theme.service';
 import { UpdateService } from '../core/update.service';
 
@@ -27,6 +28,7 @@ export class Shell {
   private readonly snackBar = inject(MatSnackBar);
   private readonly dialog = inject(MatDialog);
   protected readonly net = inject(NetService);
+  protected readonly refresh = inject(RefreshService);
   protected readonly update = inject(UpdateService);
   protected readonly tema = inject(ThemeService);
 
@@ -64,6 +66,23 @@ export class Shell {
     const { TxDialog } = await import('../pages/movimientos/tx-dialog');
     this.dialog.open(TxDialog, { data: {}, width: '520px', maxWidth: 'calc(100vw - 24px)' });
   }
+
+  protected async recargar(): Promise<void> {
+
+    try {
+
+      await this.refresh.recargar();
+
+      this.snackBar.open('Datos actualizados.', undefined, { duration: 2200 });
+
+    } catch (e) {
+
+      this.snackBar.open((e as Error).message, 'Cerrar', { duration: 6000 });
+
+    }
+
+  }
+
 
   protected async cerrarSesion(): Promise<void> {
     try {

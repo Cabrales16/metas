@@ -57,6 +57,9 @@
         <span class="material-symbols-outlined" matButtonIcon aria-hidden="true">add</span>
         <span class="largo">Nuevo movimiento</span><span class="corto">Nuevo</span>
       </button>
+      <button type="button" class="icon-btn" (click)="recargar()" [disabled]="refresh.recargando()" aria-label="Actualizar datos" title="Actualizar datos">
+        <span class="material-symbols-outlined" [class.girar]="refresh.recargando()" aria-hidden="true">refresh</span>
+      </button>
       <button
         type="button"
         class="icon-btn"
