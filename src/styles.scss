@@ -62,6 +62,126 @@ body {
   user-select: none;
 }
 
+// Estilos compartidos por las pantallas de lista (cuentas, categorías, ...).
+.page-title,
+.page-header h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+
+  h1 {
+    flex: 1;
+  }
+
+  .back {
+    width: 44px;
+    height: 44px;
+    margin-left: -8px;
+    display: grid;
+    place-items: center;
+    color: var(--app-muted);
+    border-radius: 50%;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+.muted {
+  color: var(--app-muted);
+  font-size: 0.875rem;
+}
+
+.state {
+  margin: 32px 0;
+  text-align: center;
+}
+
+.group-title {
+  margin: 24px 0 8px;
+  color: var(--app-muted);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.list {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.list-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 8px 10px 14px;
+  background: var(--mat-sys-surface-container);
+  border: 1px solid var(--app-border);
+  border-radius: 16px;
+
+  &.archivada {
+    opacity: 0.6;
+  }
+
+  .avatar {
+    flex: none;
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    color: var(--c);
+    background: color-mix(in srgb, var(--c) 18%, transparent);
+    border-radius: 12px;
+  }
+
+  .info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    strong {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-weight: 500;
+    }
+  }
+
+  .icon-btn {
+    flex: none;
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    color: var(--app-muted);
+    font: inherit;
+    background: transparent;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &:hover {
+      color: #fff;
+      background: var(--mat-sys-surface-container-high);
+    }
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
