@@ -3,26 +3,23 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { RouterLink } from '@angular/router';
 
 import { AccountsService } from '../../core/accounts.service';
 import { Account, colorDe, etiquetaTipoCuenta, iconoTipoCuenta } from '../../core/catalog';
 import { CuentaDialog, CuentaDialogData } from './cuenta-dialog';
 
+import { PageHero } from '../../shared/page-hero';
+
 @Component({
   selector: 'app-cuentas',
-  imports: [RouterLink, MatButtonModule, MatSlideToggleModule],
+  imports: [PageHero, MatButtonModule, MatSlideToggleModule],
   template: `
-    <header class="page-header">
-      <a class="back" routerLink="/mas" aria-label="Volver a Más">
-        <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
-      </a>
-      <h1>Cuentas</h1>
+    <app-page-hero titulo="Cuentas" subtitulo="Dónde tienes tu plata: efectivo, banco y otras." imagen="img/banner-bogota.jpg" volverA="/mas">
       <button mat-flat-button type="button" (click)="abrir()">
         <span class="material-symbols-outlined" matButtonIcon aria-hidden="true">add</span>
         Nueva
       </button>
-    </header>
+    </app-page-hero>
 
     <mat-slide-toggle [checked]="verArchivadas()" (change)="verArchivadas.set($event.checked)">
       Mostrar archivadas

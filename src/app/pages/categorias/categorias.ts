@@ -4,7 +4,6 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { RouterLink } from '@angular/router';
 
 import { BOLSAS, Category, CategoryKind, colorDe } from '../../core/catalog';
 import { CategoriesService } from '../../core/categories.service';
@@ -15,20 +14,18 @@ interface Grupo {
   items: Category[];
 }
 
+import { PageHero } from '../../shared/page-hero';
+
 @Component({
   selector: 'app-categorias',
-  imports: [RouterLink, MatButtonModule, MatButtonToggleModule, MatSlideToggleModule],
+  imports: [PageHero, MatButtonModule, MatButtonToggleModule, MatSlideToggleModule],
   template: `
-    <header class="page-header">
-      <a class="back" routerLink="/mas" aria-label="Volver a Más">
-        <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
-      </a>
-      <h1>Categorías</h1>
+    <app-page-hero titulo="Categorías" subtitulo="Cómo clasificas tus gastos e ingresos." imagen="img/banner-guatape.jpg" posicion="center 40%" volverA="/mas">
       <button mat-flat-button type="button" (click)="abrir()">
         <span class="material-symbols-outlined" matButtonIcon aria-hidden="true">add</span>
         Nueva
       </button>
-    </header>
+    </app-page-hero>
 
     <mat-button-toggle-group
       class="kind"

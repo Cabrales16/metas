@@ -11,17 +11,18 @@ import { NetService } from '../../core/net.service';
 import { ConfirmDialog, ConfirmData } from '../../shared/confirm-dialog';
 import { AporteDialog, MetaDialog } from './meta-dialogs';
 
+import { PageHero } from '../../shared/page-hero';
+
 @Component({
   selector: 'app-metas',
-  imports: [MatButtonModule, CopPipe],
+  imports: [PageHero, MatButtonModule, CopPipe],
   template: `
-    <header class="page-header">
-      <h1>Metas</h1>
+    <app-page-hero titulo="Metas" subtitulo="Lo que estás ahorrando y cuánto falta para lograrlo." imagen="img/meta-moto.jpg" posicion="center 60%">
       <button mat-flat-button type="button" (click)="abrirMeta()">
         <span class="material-symbols-outlined" matButtonIcon aria-hidden="true">add</span>
         Nueva meta
       </button>
-    </header>
+    </app-page-hero>
 
     @if (fallo()) {
       <div class="state">

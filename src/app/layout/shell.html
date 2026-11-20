@@ -28,6 +28,10 @@
     </nav>
 
     <div class="side-foot">
+      <div class="usuario">
+        <span class="avatar" aria-hidden="true">{{ inicial }}</span>
+        <span class="txt datos"><strong>{{ nombre }}</strong><small>Finanzas personales</small></span>
+      </div>
       <button type="button" class="item" (click)="cerrarSesion()" title="Cerrar sesión">
         <span class="material-symbols-outlined" aria-hidden="true">logout</span>
         <span class="txt">Cerrar sesión</span>
@@ -52,6 +56,7 @@
 
     <header class="top">
       <span class="top-brand"><img class="mark" src="img/marca.svg" alt="" /><span class="wordmark">Metas</span></span>
+      <span class="fecha" aria-label="Fecha de hoy">{{ fechaHoy }}</span>
       <span class="spacer"></span>
       <button mat-flat-button type="button" class="nuevo" (click)="nuevoMovimiento()">
         <span class="material-symbols-outlined" matButtonIcon aria-hidden="true">add</span>

@@ -22,17 +22,14 @@ const TEXTO_ESTADO: Record<EstadoBolsa, string> = {
 };
 const CLASE_ESTADO: Record<EstadoBolsa, string> = { ok: '', cerca: 'warn', excedido: 'err' };
 
+import { PageHero } from '../../shared/page-hero';
+
 @Component({
   selector: 'app-presupuesto',
-  imports: [MatButtonModule, CopPipe, MonthNav],
+  imports: [PageHero, MatButtonModule, CopPipe, MonthNav],
   template: `
-    <header class="page-header">
-      <h1>Presupuesto</h1>
-      <app-month-nav [(mes)]="mes" />
-      <p class="sub">
-        Se calcula sobre los ingresos de {{ mesTexto() }}: {{ resumenReglas() }}
-      </p>
-    </header>
+    <app-page-hero titulo="Presupuesto" [subtitulo]="'Se calcula sobre los ingresos de ' + mesTexto() + ': ' + resumenReglas()" imagen="img/login-nevado.jpg" posicion="center 35%" />
+    <div class="barra-mes"><app-month-nav [(mes)]="mes" /></div>
 
     @if (fallo()) {
       <div class="state">

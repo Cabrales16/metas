@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+import { PageHero } from '../shared/page-hero';
+
 @Component({
   selector: 'app-mas',
-  imports: [RouterLink],
+  imports: [PageHero, RouterLink],
   template: `
-    <header class="page-header">
-      <h1>Más</h1>
-    </header>
+    <app-page-hero titulo="Más" subtitulo="Inversiones, cuentas y herramientas." imagen="img/login-nevado.jpg" posicion="center 30%" />
     <nav class="menu" aria-label="Más secciones">
       @for (e of enlaces; track e.ruta) {
         <a class="menu-item" [routerLink]="e.ruta">
@@ -28,7 +28,7 @@ import { RouterLink } from '@angular/router';
       </p>
       <p class="creditos">
         Imágenes (dominio público, CC0): «Panorámica de Usaquén, Bogotá D.C.» de Alejandro Turola, y «Nevado del
-        Quindío» del Servicio Geológico Colombiano, vía Wikimedia Commons; fotografía de moto de aventura de Sakin
+        Quindío» del Servicio Geológico Colombiano, y «Embalse de Guatapé» de Dan Gold (Unsplash), vía Wikimedia Commons; fotografía de moto de aventura de Sakin
         Shrestha, vía WordPress Photo Directory.
       </p>
     </section>

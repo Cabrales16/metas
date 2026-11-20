@@ -2,7 +2,6 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { RouterLink } from '@angular/router';
 
 import { diasAlVencimiento, PERIODICIDADES, proyectarCdt, requiereAlerta } from '../../core/cdt';
 import { CopPipe } from '../../core/cop.pipe';
@@ -13,21 +12,18 @@ import { CdtDialog } from './cdt-dialog';
 
 const ESTADOS = { active: 'Activo', matured: 'Vencido', cancelled: 'Cancelado' } as const;
 
+import { PageHero } from '../../shared/page-hero';
+
 @Component({
   selector: 'app-cdts',
-  imports: [RouterLink, MatButtonModule, CopPipe],
+  imports: [PageHero, MatButtonModule, CopPipe],
   template: `
-    <header class="page-header">
-      <a class="back" routerLink="/mas" aria-label="Volver a Más">
-        <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
-      </a>
-      <h1>CDTs</h1>
+    <app-page-hero titulo="CDTs" subtitulo="Tus inversiones a término, con el interés neto mes a mes." imagen="img/login-nevado.jpg" posicion="center 40%" volverA="/mas">
       <button mat-flat-button type="button" (click)="abrir()">
         <span class="material-symbols-outlined" matButtonIcon aria-hidden="true">add</span>
         Nuevo CDT
       </button>
-      <p class="sub">Tus inversiones a término, con el interés neto mes a mes.</p>
-    </header>
+    </app-page-hero>
 
     @if (fallo()) {
       <div class="state">
