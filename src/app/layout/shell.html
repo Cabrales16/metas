@@ -7,8 +7,8 @@
       [attr.aria-expanded]="!contraido()"
       [attr.aria-label]="contraido() ? 'Expandir menú' : 'Contraer menú'"
     >
-      <span class="mark" aria-hidden="true">M</span>
-      <span class="txt">Metas</span>
+      <img class="mark" src="img/marca.svg" alt="" />
+      <span class="txt wordmark">Metas</span>
     </button>
 
     <nav class="menu" aria-label="Secciones">
@@ -51,10 +51,10 @@
     }
 
     <header class="top">
-      <span class="top-brand"><span class="mark" aria-hidden="true">M</span>Metas</span>
+      <span class="top-brand"><img class="mark" src="img/marca.svg" alt="" /><span class="wordmark">Metas</span></span>
       <span class="spacer"></span>
       <button mat-flat-button type="button" class="nuevo" (click)="nuevoMovimiento()">
-        <span class="material-symbols-outlined" aria-hidden="true">add</span>
+        <span class="material-symbols-outlined" matButtonIcon aria-hidden="true">add</span>
         <span class="largo">Nuevo movimiento</span><span class="corto">Nuevo</span>
       </button>
       <button

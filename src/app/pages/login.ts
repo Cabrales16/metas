@@ -16,7 +16,7 @@ import { NetService } from '../core/net.service';
     <div class="login">
       <section class="marca" style="background-image: url(img/login-nevado.jpg)">
         <div class="velo">
-          <div class="logo"><span class="mark" aria-hidden="true">M</span>Metas</div>
+          <div class="logo"><img class="mark" src="img/marca.svg" alt="" /><span class="wordmark">Metas</span></div>
           <div class="lema">
             <h1>Tus metas, a tu ritmo</h1>
             <p>Ingresos, gastos y ahorros en un solo lugar, hechos a tu medida.</p>
@@ -26,7 +26,7 @@ import { NetService } from '../core/net.service';
 
       <main class="panel">
         <form [formGroup]="form" (ngSubmit)="enviar()" novalidate>
-          <div class="logo solo-movil"><span class="mark" aria-hidden="true">M</span>Metas</div>
+          <div class="logo solo-movil"><img class="mark" src="img/marca.svg" alt="" /><span class="wordmark">Metas</span></div>
           <div>
             <h2>Qué bueno verte de nuevo</h2>
             <p class="muted">Inicia sesión para continuar.</p>
@@ -101,18 +101,11 @@ import { NetService } from '../core/net.service';
       display: flex;
       align-items: center;
       gap: 12px;
-      font-size: 1.375rem;
-      font-weight: 700;
+      font-size: 1.5rem;
     }
     .mark {
       width: 40px;
       height: 40px;
-      display: grid;
-      place-items: center;
-      color: var(--on-prim);
-      background: var(--prim);
-      border-radius: 12px;
-      font-weight: 800;
     }
     .lema h1 {
       max-width: 420px;

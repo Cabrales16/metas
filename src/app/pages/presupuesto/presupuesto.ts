@@ -112,7 +112,7 @@ const CLASE_ESTADO: Record<EstadoBolsa, string> = { ok: '', cerca: 'warn', exced
 
       <div class="acciones">
         <button mat-stroked-button type="button" (click)="editar()">
-          <span class="material-symbols-outlined" aria-hidden="true">tune</span>
+          <span class="material-symbols-outlined" matButtonIcon aria-hidden="true">tune</span>
           Editar porcentajes
         </button>
       </div>

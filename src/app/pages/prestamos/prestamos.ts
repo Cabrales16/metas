@@ -24,7 +24,7 @@ const ESTADOS = { pending: 'Pendiente', partial: 'Pago parcial', paid: 'Pagado',
       </a>
       <h1>Por cobrar</h1>
       <button mat-flat-button type="button" (click)="abrir()">
-        <span class="material-symbols-outlined" aria-hidden="true">add</span>
+        <span class="material-symbols-outlined" matButtonIcon aria-hidden="true">add</span>
         Nuevo préstamo
       </button>
       <p class="sub">Lo que prestaste y cuánto te falta por recibir.</p>

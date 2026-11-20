@@ -10,7 +10,7 @@ html {
         theme-type: light,
         primary: mat.$yellow-palette,
       ),
-      typography: 'DM Sans',
+      typography: 'Geist',
       density: 0,
     )
   );
@@ -24,7 +24,7 @@ html[data-tema='oscuro'] {
         theme-type: dark,
         primary: mat.$yellow-palette,
       ),
-      typography: 'DM Sans',
+      typography: 'Geist',
       density: 0,
     )
   );
@@ -138,7 +138,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: 'DM Sans', system-ui, 'Segoe UI', Arial, sans-serif;
+  font-family: 'Geist', system-ui, 'Segoe UI', Arial, sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
@@ -168,6 +168,21 @@ p {
 }
 
 // ---- Utilidades ----
+// Logo: tipografía propia (Outfit), distinta a la del sistema, en minúscula.
+.wordmark {
+  font-family: 'Outfit', 'Geist', system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-transform: lowercase;
+}
+
+.mark {
+  flex: none;
+  display: block;
+  width: 34px;
+  height: 34px;
+}
+
 .muted {
   color: var(--muted);
   font-size: 0.875rem;

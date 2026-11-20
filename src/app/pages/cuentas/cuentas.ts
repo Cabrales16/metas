@@ -19,7 +19,7 @@ import { CuentaDialog, CuentaDialogData } from './cuenta-dialog';
       </a>
       <h1>Cuentas</h1>
       <button mat-flat-button type="button" (click)="abrir()">
-        <span class="material-symbols-outlined" aria-hidden="true">add</span>
+        <span class="material-symbols-outlined" matButtonIcon aria-hidden="true">add</span>
         Nueva
       </button>
     </header>

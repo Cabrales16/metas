@@ -23,7 +23,7 @@ const ESTADOS = { active: 'Activo', matured: 'Vencido', cancelled: 'Cancelado' }
       </a>
       <h1>CDTs</h1>
       <button mat-flat-button type="button" (click)="abrir()">
-        <span class="material-symbols-outlined" aria-hidden="true">add</span>
+        <span class="material-symbols-outlined" matButtonIcon aria-hidden="true">add</span>
         Nuevo CDT
       </button>
       <p class="sub">Tus inversiones a término, con el interés neto mes a mes.</p>

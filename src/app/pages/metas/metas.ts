@@ -18,7 +18,7 @@ import { AporteDialog, MetaDialog } from './meta-dialogs';
     <header class="page-header">
       <h1>Metas</h1>
       <button mat-flat-button type="button" (click)="abrirMeta()">
-        <span class="material-symbols-outlined" aria-hidden="true">add</span>
+        <span class="material-symbols-outlined" matButtonIcon aria-hidden="true">add</span>
         Nueva meta
       </button>
     </header>
