@@ -14,7 +14,7 @@ const PAD = { izq: 68, der: 8, arr: 10, abajo: 28 };
 
 /** Escala con pasos redondos (1, 2, 2.5, 5 × 10^k) y 3-5 marcas. */
 export function escalaBonita(max: number): { tope: number; marcas: number[] } {
-  if (max <= 0) return { tope: 100_000, marcas: [0, 50_000, 100_000] };
+  if (max <= 0) return { tope: 100, marcas: [0, 50, 100] };
   const pasoBruto = max / 4;
   const mag = Math.pow(10, Math.floor(Math.log10(pasoBruto)));
   const paso = [1, 2, 2.5, 5, 10].map((m) => m * mag).find((p) => p >= pasoBruto)!;

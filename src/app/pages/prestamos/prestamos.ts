@@ -2,6 +2,7 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { RouterLink } from '@angular/router';
 
 import { CopPipe } from '../../core/cop.pipe';
 import { formatoFecha, hoy } from '../../core/dates';
@@ -13,18 +14,21 @@ import { PagoDialog, PrestamoDialog } from './prestamo-dialogs';
 
 const ESTADOS = { pending: 'Pendiente', partial: 'Pago parcial', paid: 'Pagado', written_off: 'Dado de baja' } as const;
 
-import { PageHero } from '../../shared/page-hero';
-
 @Component({
   selector: 'app-prestamos',
-  imports: [PageHero, MatButtonModule, CopPipe],
+  imports: [RouterLink, MatButtonModule, CopPipe],
   template: `
-    <app-page-hero titulo="Por cobrar" subtitulo="Lo que prestaste y cuánto te falta por recibir." imagen="img/banner-guatape.jpg" posicion="center 70%" volverA="/mas">
+    <header class="page-header">
+      <a class="back" routerLink="/mas" aria-label="Volver a Más">
+        <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
+      </a>
+      <h1>Por cobrar</h1>
       <button mat-flat-button type="button" (click)="abrir()">
         <span class="material-symbols-outlined" matButtonIcon aria-hidden="true">add</span>
         Nuevo préstamo
       </button>
-    </app-page-hero>
+      <p class="sub">Lo que prestaste y cuánto te falta por recibir.</p>
+    </header>
 
     @if (fallo()) {
       <div class="state">

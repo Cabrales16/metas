@@ -24,14 +24,14 @@ interface Dia {
   items: Tx[];
 }
 
-import { PageHero } from '../../shared/page-hero';
-
 @Component({
   selector: 'app-movimientos',
-  imports: [PageHero, MatButtonModule, MatSelectModule, MonthNav, CopPipe],
+  imports: [MatButtonModule, MatSelectModule, MonthNav, CopPipe],
   template: `
-    <app-page-hero titulo="Movimientos" subtitulo="Todo lo que entra y sale, mes a mes." imagen="img/banner-guatape.jpg" posicion="center 55%" />
-    <div class="barra-mes"><app-month-nav [(mes)]="mes" /></div>
+    <header class="page-header">
+      <h1>Movimientos</h1>
+      <app-month-nav [(mes)]="mes" />
+    </header>
 
     <section class="kpis resumen" aria-label="Resumen del mes">
       <div class="card kpi">

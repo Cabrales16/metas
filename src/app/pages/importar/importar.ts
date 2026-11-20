@@ -17,13 +17,17 @@ import { NetService } from '../../core/net.service';
 
 type Paso = 'inicio' | 'leyendo' | 'vista' | 'importando' | 'listo';
 
-import { PageHero } from '../../shared/page-hero';
-
 @Component({
   selector: 'app-importar',
-  imports: [PageHero, RouterLink, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatSelectModule, CopPipe],
+  imports: [RouterLink, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatSelectModule, CopPipe],
   template: `
-    <app-page-hero titulo="Importar desde Monefy" subtitulo="Sube el CSV exportado de Monefy. Antes de guardar nada verás una vista previa." imagen="img/banner-bogota.jpg" posicion="center 30%" volverA="/mas" />
+    <header class="page-header">
+      <a class="back" routerLink="/mas" aria-label="Volver a Más">
+        <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
+      </a>
+      <h1>Importar desde Monefy</h1>
+      <p class="sub">Sube el CSV exportado de Monefy. Antes de guardar nada verás una vista previa.</p>
+    </header>
 
     @switch (paso()) {
       @case ('inicio') {

@@ -5,10 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 import { AuthService } from '../core/auth.service';
-import { formatoDia, hoy } from '../core/dates';
 import { NetService } from '../core/net.service';
-import { NOMBRE_USUARIO } from '../core/profile';
-import { abrirMovimiento } from '../shared/tx-launcher';
 import { ThemeService } from '../core/theme.service';
 import { UpdateService } from '../core/update.service';
 
@@ -62,12 +59,10 @@ export class Shell {
     });
   }
 
-  protected readonly nombre = NOMBRE_USUARIO;
-  protected readonly inicial = NOMBRE_USUARIO.charAt(0).toUpperCase();
-  protected readonly fechaHoy = formatoDia(hoy());
-
-  protected nuevoMovimiento(): Promise<void> {
-    return abrirMovimiento(this.dialog);
+  /** El formulario se carga bajo demanda: así el arranque no arrastra todo Material. */
+  protected async nuevoMovimiento(): Promise<void> {
+    const { TxDialog } = await import('../pages/movimientos/tx-dialog');
+    this.dialog.open(TxDialog, { data: {}, width: '520px', maxWidth: 'calc(100vw - 24px)' });
   }
 
   protected async cerrarSesion(): Promise<void> {
