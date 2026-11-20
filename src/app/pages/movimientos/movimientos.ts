@@ -1,7 +1,6 @@
 import { Component, computed, effect, inject, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -27,7 +26,7 @@ interface Dia {
 
 @Component({
   selector: 'app-movimientos',
-  imports: [MatButtonModule, MatFormFieldModule, MatSelectModule, MonthNav, CopPipe],
+  imports: [MatButtonModule, MatSelectModule, MonthNav, CopPipe],
   template: `
     <header class="page-header">
       <h1>Movimientos</h1>
@@ -57,24 +56,24 @@ interface Dia {
           </button>
         }
       </div>
-      <mat-form-field appearance="outline" subscriptSizing="dynamic">
-        <mat-label>Cuenta</mat-label>
-        <mat-select [value]="cuenta()" (selectionChange)="cuenta.set($event.value)">
+      <div class="pill">
+        <span class="pre">Cuenta</span>
+        <mat-select aria-label="Filtrar por cuenta" [value]="cuenta()" (selectionChange)="cuenta.set($event.value)">
           <mat-option value="">Todas</mat-option>
           @for (a of accounts.items(); track a.id) {
             <mat-option [value]="a.id">{{ a.name }}</mat-option>
           }
         </mat-select>
-      </mat-form-field>
-      <mat-form-field appearance="outline" subscriptSizing="dynamic">
-        <mat-label>Categoría</mat-label>
-        <mat-select [value]="categoria()" (selectionChange)="categoria.set($event.value)">
+      </div>
+      <div class="pill">
+        <span class="pre">Categoría</span>
+        <mat-select aria-label="Filtrar por categoría" [value]="categoria()" (selectionChange)="categoria.set($event.value)">
           <mat-option value="">Todas</mat-option>
           @for (c of categories.items(); track c.id) {
             <mat-option [value]="c.id">{{ c.name }}</mat-option>
           }
         </mat-select>
-      </mat-form-field>
+      </div>
     </section>
 
     @if (fallo()) {
@@ -162,6 +161,34 @@ interface Dia {
       grid-template-columns: auto 1fr 1fr;
       gap: 12px;
       align-items: center;
+      margin-bottom: 20px;
+    }
+    .pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+      height: 44px;
+      padding: 0 16px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      transition: border-color 160ms ease;
+    }
+    .pill:hover,
+    .pill:focus-within {
+      border-color: var(--faint);
+    }
+    .pill .pre {
+      flex: none;
+      color: var(--muted);
+      font-size: 0.875rem;
+    }
+    .pill mat-select {
+      flex: 1;
+      min-width: 0;
+      font-size: 0.9375rem;
+      font-weight: 600;
     }
     .dia-cab {
       display: flex;
