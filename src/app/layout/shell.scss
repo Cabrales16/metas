@@ -1,6 +1,7 @@
-// Móvil primero: navegación inferior. Desde 840px: barra lateral.
+// Móvil primero: barra superior + navegación inferior. Desde 840px: barra lateral.
 $bp-escritorio: 840px;
 $alto-bottom-nav: 64px;
+$alto-top-bar: 56px;
 
 .shell {
   min-height: 100dvh;
@@ -27,6 +28,45 @@ $alto-bottom-nav: 64px;
 
   &.active {
     color: #fff;
+  }
+}
+
+button.nav-item,
+.icon-btn {
+  font: inherit;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  height: $alto-top-bar;
+  padding: 0 8px 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--mat-sys-surface-container);
+  border-bottom: 1px solid var(--app-border);
+
+  .brand {
+    font-size: 1.125rem;
+    font-weight: 700;
+  }
+
+  .icon-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    color: var(--app-muted);
+    display: grid;
+    place-items: center;
+
+    &:hover {
+      color: #fff;
+    }
   }
 }
 
@@ -62,6 +102,7 @@ $alto-bottom-nav: 64px;
     flex-direction: row;
   }
 
+  .top-bar,
   .bottom-nav {
     display: none;
   }
@@ -100,6 +141,12 @@ $alto-bottom-nav: 64px;
         background: color-mix(in srgb, var(--app-accent) 18%, transparent);
         color: #fff;
       }
+    }
+
+    .logout {
+      margin-top: auto;
+      width: 100%;
+      text-align: left;
     }
   }
 

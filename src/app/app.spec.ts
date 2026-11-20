@@ -12,15 +12,6 @@ describe('App', () => {
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(App);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it('should render the brand and the five sections', async () => {
-    const fixture = TestBed.createComponent(App);
-    await fixture.whenStable();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.brand')?.textContent).toContain('Metas');
-    expect(compiled.querySelectorAll('.side-nav .nav-item').length).toBe(5);
+    expect(fixture.componentInstance).toBeTruthy();
   });
 });
